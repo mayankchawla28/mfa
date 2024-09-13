@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2FA Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input {
+      margin: 10px 0;
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      color: white;
+      background-color: #007bff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>2FA Management</h1>
+
+    <form action="http://localhost:3000/otplib/generate" method="POST">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" placeholder="Enter user ID" required />
+      <button type="submit">Generate QR Code</button>
+    </form>
+
+    <form action="http://localhost:3000/otplib/regenerate" method="POST">
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" placeholder="Enter user ID" required />
+      <button type="submit">Regenerate QR Code</button>
+    </form>
+
+    <form action="http://localhost:3000/otplib/verify/otp" method="POST">
+      <label for="id">User ID:</label>
+      <input type="text" id="id" name="id" placeholder="Enter user ID" required />
+      <label for="otp">OTP:</label>
+      <input type="text" id="otp" name="otp" placeholder="Enter OTP" required />
+      <label for="secret">Secret:</label>
+      <input type="text" id="secret" name="secret" placeholder="Enter secret" required />
+      <button type="submit">Verify 2FA</button>
+    </form>
+
+    <div id="result">
+      <h2>QR Code:</h2>
+      <img src="<%= qrCode %>" alt="QR Code" />
+      <p>Secret: <%= secret %>
+      </p>
+    </div>
+  </div>
+</body>
+
+</html>
