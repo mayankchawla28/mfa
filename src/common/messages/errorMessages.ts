@@ -11,6 +11,10 @@ const errorMessages = {
     code: "ERR0002",
     message: "Invalid API key",
   },
+  ERR0003: {
+    code: "ERR0003",
+    message: "Invalid OTP provided.",
+  },
 };
 
 export default errorMessages;
